@@ -14,7 +14,7 @@ if (["dev", "prod"].indexOf(env) === -1) {
 
 const sharedProps = {
   env: env,
-  account: "881412415820",
+  account: "",
   region: "us-east-1",
 };
 
