@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import * as cdk from "aws-cdk-lib";
 import { DynamoStack } from "../lib/dynamo-stack";
+import { ApiGatewayStack } from "../lib/api-gateway-stack";
 
 const app = new cdk.App();
 
@@ -13,11 +14,18 @@ if (["dev", "prod"].indexOf(env) === -1) {
 
 const sharedProps = {
   env: env,
-  account: "",
+  account: "881412415820",
   region: "us-east-1",
 };
 
-new DynamoStack(app, "DynamoStack", {
+// Stack de DynamoDB
+const dynamoStack = new DynamoStack(app, "DynamoStack", {
   ...sharedProps,
   name: `${appName}-dynamo-${env}`,
+});
+
+// Stack de API Gateway
+new ApiGatewayStack(app, "ApiGatewayStack", {
+  ...sharedProps,
+  name: `${appName}-api-${env}`,
 });
